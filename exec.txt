@@ -1,0 +1,3 @@
+The exec function is used by a process to replace its current program with a new one. It replaces its memory image with a new one, and starts executing the main program, and the PID stays the same.
+
+The process calls exec() and provides the path of the executbale file. THe OS replaces the current process's code, data, heap, and stack with those of the new program. The new program starts executing from main(), and the old program's instructions are gone.
