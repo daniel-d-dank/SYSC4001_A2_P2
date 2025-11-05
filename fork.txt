@@ -1,0 +1,12 @@
+The fork system call is used to create a new process by duplicating some other process. Specifically, when some process calls fork,
+its process image and PCB entry are copied byte-by-byte to produce a new process. The PCB entries for the original (parent) and new (child)
+processes are changed minimally: the child process has a distinct PID from the parent; the child process has its memory address location
+updated to point to the new process image, rather than the original (the parent’s); and both the parent and child process’s entries are
+given pointers to each other (their child or parent process, respectively). Note that the two processes are also scheduled independently,
+since they are distinct processes.
+
+When the fork command returns, the behavior differs depending on whether the process is the original (parent) process or the new (child)
+process. The parent process’s fork command will return with the PID of the child process that was produced by the fork; if the parent
+returns a negative value, then the fork has failed. However, the child process’s fork command will return with a value of 0. This is
+significant, as the parent and child processes share the same code; the return value of fork can be used by programmers in order to
+determine whether the currently-running process is the parent or child process.
